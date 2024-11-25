@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'ITCAvantGardeBK';
+  src: url('./assets/ITCAvantGardeStd-Bk.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ITCAvantGardeMd';
+  src: url('./assets/ITCAvantGardeStd-Md.ttf.ttf') format('truetype');
+}
+
+:root {
+  /* Color Variables */
+  --primary-color: #1E90FF;  /* Bright Blue */
+  --pale-primary-color: #ADD8E6;  /* Light Blue */
+  --secondary-color: #B0E0E6;  /* Powder Blue */
+  --tertiary-color: #E0FFFF;  /* Light Cyan */
+  --fourth-color: #4682B4;  /* Steel Blue */
+  --fifth-color: #5F9EA0;  /* Cadet Blue */
+  --error-color: #4682B4;  /* Steel Blue (used as error color) */
+  --warning-color: #87CEEB;  /* Sky Blue (lighter blue for warning) */
+  --info-color: #87CEFA;  /* Light Sky Blue */
+  --success-color: #ADD8E6;  /* Light Blue */
+
+  /* Font Variables */
+  --primary-font: 'ITCAvantGardeBK', sans-serif;
+  --primary-md-font: 'ITCAvantGardeMd', sans-serif;
+
+  /* Font Sizes */
+  --herosize-font: 112px;
+  --extralarge-font: 64px;
+  --large-font: 42px;
+  --semi-font: 24px;
+  --medium-font: 16px;
+  --small-font: 12px;
+}

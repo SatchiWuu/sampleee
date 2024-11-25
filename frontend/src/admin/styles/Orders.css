@@ -1,0 +1,60 @@
+/* Define blue and light blue color variables */
+:root {
+    --fifth-color: #1E90FF;  /* Blue */
+    --success-color: #ADD8E6;  /* Light Blue */
+    --error-color: #4682B4;  /* Steel Blue (Darker Blue) */
+    --info-color: #5F9EA0;  /* Cadet Blue (Light Blue) */
+}
+
+.status-span {
+    padding: 6px 9px;
+    border-radius: 6px;
+}
+
+.pending-status {
+    color: var(--fifth-color);  /* Blue */
+    border: 2px solid var(--fifth-color);  /* Blue */
+}
+
+.delivered-status {
+    color: var(--success-color);  /* Light Blue */
+    border: 2px solid var(--success-color);  /* Light Blue */
+}
+
+.cancelled-status {
+    color: var(--error-color);  /* Steel Blue */
+    border: 2px solid var(--error-color);  /* Steel Blue */
+}
+
+.shipped-status {
+    color: var(--info-color);  /* Cadet Blue */
+    border: 2px solid var(--info-color);  /* Cadet Blue */
+}
+
+.controls-collapsed {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.pending-button {
+    color: var(--fifth-color) !important;  /* Blue */
+    border: 1px solid var(--fifth-color) !important;  /* Blue */
+}
+
+.shipped-button {
+    color: var(--info-color) !important;  /* Cadet Blue */
+    border: 1px solid var(--info-color) !important;  /* Cadet Blue */
+}
+
+.delivered-button {
+    color: var(--success-color) !important;  /* Light Blue */
+    border: 1px solid var(--success-color) !important;  /* Light Blue */
+}
+
+.cancelled-button {
+    color: var(--error-color) !important;  /* Steel Blue */
+    border: 1px solid var(--error-color) !important;  /* Steel Blue */
+}

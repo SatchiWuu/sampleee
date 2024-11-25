@@ -1,0 +1,389 @@
+.login-modal__container {
+    height: 580px;
+    width: 500px;
+    border-radius: 20px;
+    animation: dropLogin 0.8s forwards; 
+    background-color: white;
+    padding:20px 40px;
+
+}
+
+.landscape .modal-body {
+    /* border:1px solid red; */
+    height: 100%;
+    width: 100%;
+gap:10px;
+    display: flex;
+}
+
+.modal-content .title, .modal-content .category-stock {
+    height: 10%;
+    /* border:1px solid red; */
+}
+
+.modal-content .title{
+    font-weight: 600;
+}
+
+.modal-content .category-stock {
+    font-size: var(--small-font);
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-content .size, .modal-content .color {
+    height: fit-content;
+    max-height: 30%;
+    /* border:1px solid red; */
+}
+
+.modal-body .img-container {
+    /* border:1px solid red; */
+    width: 40%;
+}
+
+.d-flex {
+    display: flex;
+    gap:5px
+}
+
+.modal-body .controls {
+    position: absolute;
+    bottom:10px;
+    width: 300px;
+    /* border:1px solid red; */
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+}
+
+.modal-body .controls .prime-button {
+    height: 36px;
+    width: 80px;
+    font-size: var(--small-font);
+}
+
+.modal-body .modal-content {
+    /* border:1px solid red; */
+    width: 60%;
+    padding:10px;
+}
+
+.landscape  {
+    height: 400px !important;
+    width: 600px !important;
+    border-radius: 20px;
+    animation: dropLogin 0.8s forwards; 
+    background-color: white;
+    padding:20px 40px;
+}
+
+
+.form-selection {
+    margin: 20px 0px;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+
+.form-selection button {
+    width: 120px;
+    border-radius: 20px;
+    background-color: white;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px 0px;
+    border-radius: 20px;
+    margin: 10px 0px;
+    transition: .5s ease-in-out;
+}
+
+.form-selection .active {
+    background-color: var(--primary-color);
+    color:white;
+    transition: .5s ease-in-out;
+}
+
+.login-modal__container .logo-container {
+    /* border:1px solid red; */
+    height:100px;
+    width: 100%;
+}
+
+.logo-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+@keyframes dropLogin {
+    0% {
+        height: 680px;
+        transform: translateY(-500px); 
+    }
+    50% {
+        min-height: 300px;
+        transform: translateY(10px); 
+    } 
+    100% {
+        height: 680px;
+    }
+}
+
+.login-form .input-group, .register-form .input-group {
+    display: flex;
+    flex-direction: column;
+    /* border:1px solid red; */
+    margin: 10px 0px;
+}
+
+.input-group label{
+    margin-bottom: 5px;
+}
+
+.input-group .login-input{
+    all: unset;
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    border:1px solid gray;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.mt-20 {
+    margin-top: 50px;
+}
+
+.between-utils {
+    display: flex;
+    justify-content: space-between;
+    /* border:1px solid red; */
+    font-size: 13px;
+    margin:30px 0 0 0;
+}
+
+.between-utils a {
+    font-size: 13px;
+}
+
+.remember-me__checkbox {
+    margin-right: 10px;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.alt-login {
+    display: flex;
+    justify-content: space-between;
+    gap:10px;
+}
+
+.facebook-button {
+    background-color: #1877F2;
+}
+
+.gmail-button {
+    background-color: #c71610;
+}
+
+.facebook-button::after {
+    background-color: #1877F2;
+}
+    
+.facebook-button::before {
+    background-color: #15427d;
+}
+
+.gmail-button::after {
+    background-color: #c71610;
+}
+    
+.gmail-button::before {
+    background-color: #a20c06;
+}
+
+.line-break {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.line-break::before,
+.line-break::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgb(158, 158, 158);
+}
+
+.line-break::before {
+    margin-right: 10px;
+}
+
+.line-break::after {
+    margin-left: 10px;
+}
+
+.line-break span {
+    white-space: nowrap;
+}
+
+.btn-icon {
+    font-size: 20px;
+}
+
+.form-panel {
+    /* border:1px solid red; */
+    display: flex;
+    overflow: hidden;
+    padding:5px;
+    gap:10px;
+}
+
+.form-panel form{
+    min-width: 100%;
+}
+
+.register-active .login-form {
+    transform: translateX(-420px);
+    transition: transform .5s;
+}
+
+.register-active .register-form {
+    transform: translateX(-420px);
+    transition: transform .5s;
+}
+
+.login-active .login-form {
+    transform: translateX(0px);
+    transition: transform .5s;
+}
+
+.login-active .register-form {
+    transform: translateX(0px);
+    transition: transform .5s;
+}
+
+.user-form__container {
+    height: 690px !important;
+    width: 830px;
+    border-radius: 20px;
+    animation: dropLogin 0.8s forwards; 
+    background-color: white;
+    padding:20px 40px;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.12);
+}
+
+.user-form__container input, .user-form__container label {
+    font-size: var(--small-font);
+}
+
+.user-form__container .backdrop {
+    top:0;
+    left:0;
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background-color: var(--pale-primary-color);
+    z-index: 1;
+}
+
+.user-form__container .user-avatar {
+    /* border: 10px solid white; */
+    height: 125px;
+    width: 125px;
+    margin:0;
+    border-radius: 20px;
+    
+}
+
+
+.form-row-new {
+    margin-top: 10px;
+    display: flex;
+    align-items: baseline;
+    gap:20px;
+}
+
+.user-avatar img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;   
+    border-radius: 20px;
+}
+
+.user-form__container .form-container {
+    /* border:1px solid rgb(200, 200, 200); */
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    padding:10px;
+    margin-top: 0px;
+    width: 100%;
+    height: fit-content;
+    padding:20px;
+}
+
+.user-form__container .form-control {
+    margin:20px 0px;
+    display: flex;
+    justify-content: end;
+    gap:10px;
+}
+
+.form-container .form-row {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    margin: 10px 0px 10px 0;
+}
+
+.form-container .form-divider {
+    font-weight: 800;
+    border-bottom:1px solid gray;
+    width: 100%;
+    margin: 0px 0px;
+    padding: 10px 0px;
+    text-transform: uppercase;
+    font-size: var(--small-font);
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.review-modal {
+    height: 350px !important;
+    width: 550px !important;
+    border-radius: 20px;
+    animation: dropLogin 0.8s forwards; 
+    background-color: white;
+    padding:20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
+
+.review-controls {
+    display: flex;
+    gap:10px;
+}
+
+.review-controls .delete-button {
+    border: 2px solid red;
+    color:red;
+    background-color: white;
+}
+
+.review-controls .delete-button:hover {
+    color:white;
+}
