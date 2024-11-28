@@ -9,15 +9,14 @@ export default function DataGridDemo() {
   const [openDialog, setOpenDialog] = useState(false);
   const [productData, setProductData] = useState({ title: '', description: '', price: '' });
   const [editingProductId, setEditingProductId] = useState(null);
-  const [selectedRows, setSelectedRows] = useState([]); // Store selected rows
-  
-  // Fetch the data from the API
+
   const retrieve = async () => {
     try {
       const res = await axios.get('http://localhost:8000/api/product');
       setRows(res.data.data);
+      console.log(res.data.data)
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -25,41 +24,35 @@ export default function DataGridDemo() {
     retrieve();
   }, []);
 
-  // Create a new product
   const createProduct = async () => {
     try {
-      const newProduct = { ...productData };
-      await axios.post('http://localhost:8000/api/product', newProduct);
+      await axios.post('http://localhost:8000/api/product', productData);
       setOpenDialog(false);
-      retrieve(); // Refresh the grid
+      retrieve();
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
-  // Update an existing product
   const updateProduct = async () => {
     try {
-      const updatedProduct = { ...productData };
-      await axios.put(`http://localhost:8000/api/product/${editingProductId}`, updatedProduct);
+      await axios.put(`http://localhost:8000/api/product/${editingProductId}`, productData);
       setOpenDialog(false);
-      retrieve(); // Refresh the grid
+      retrieve();
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
-  // Delete a product
   const deleteProduct = async (productId) => {
     try {
       await axios.delete(`http://localhost:8000/api/product/${productId}`);
-      retrieve(); // Refresh the grid
+      retrieve();
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
-  // Open dialog for creating or editing a product
   const openDialogForEdit = (product) => {
     setProductData({
       title: product?.title || '',
@@ -70,134 +63,105 @@ export default function DataGridDemo() {
     setOpenDialog(true);
   };
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setProductData((prevData) => ({
-      ...prevData,
+    setProductData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
-  // Handle Edit button click
-  const handleEditClick = (product) => {
-    openDialogForEdit(product);
-  };
-
-  // Handle Delete button click
-  const handleDeleteClick = (productId) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      deleteProduct(productId);
-    }
-  };
-
   const columns = [
+    { field: '_id', headerName: 'ID', width: 200 },
+    { field: 'title', headerName: 'Title', flex: 1 },
+    { field: 'description', headerName: 'Description', flex: 2 },
+    { field: 'price', headerName: 'Price', type: 'number', flex: 1 },
     {
-      field: 'id',
-      headerName: 'ID',
-      renderCell: (params) => {
-        return `ID-${params.row._id || params.value}`; // Add 'ID-' prefix to the value
-      },
-    },
-    {
-      field: 'title',
-      headerName: 'Title',
-      editable: true,
-    },
-    {
-      field: 'description',
-      headerName: 'Description',
-      editable: true,
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      type: 'number',
-      editable: true,
-    },
-    {
-      field: 'controls',
-      headerName: 'Controls',
-      renderCell: (params) => {
-        return (
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => handleEditClick(params.row)}
-            >
-              Edit
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => handleDeleteClick(params.row._id)}
-            >
-              Delete
-            </Button>
-          </Box>
-        );
-      },
+      field: 'actions',
+      headerName: 'Actions',
+      renderCell: (params) => (
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            onClick={() => openDialogForEdit(params.row)}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="outlined"
+            color="error"
+            size="small"
+            onClick={() => deleteProduct(params.row._id)}
+          >
+            Delete
+          </Button>
+        </Box>
+      ),
+      flex: 1,
     },
   ];
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <Button variant="contained" onClick={() => openDialogForEdit(null)}>
-        Create New Product
-      </Button>
+    <Box sx={{ padding: 2 }}>
+      <Box sx={{ marginBottom: 2, display: 'flex', justifyContent: 'flex-end' }}>
+        <Button variant="contained" color="primary" onClick={() => openDialogForEdit(null)}>
+          Create New Product
+        </Button>
+      </Box>
 
-      <DataGrid
-        fullWidth
-        rows={rows}
-        columns={columns}
-        getRowId={(row) => row._id} // Ensure each row has a unique ID
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-      />
+      <Box sx={{ height: 400 }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          getRowId={(row) => row._id}
+          pageSizeOptions={[5]}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 5 } },
+          }}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      </Box>
 
-      {/* Dialog for creating/editing product */}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>{editingProductId ? 'Edit Product' : 'Create New Product'}</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <TextField
             label="Title"
-            fullWidth
-            margin="normal"
             name="title"
             value={productData.title}
             onChange={handleInputChange}
+            fullWidth
           />
           <TextField
             label="Description"
-            fullWidth
-            margin="normal"
             name="description"
             value={productData.description}
             onChange={handleInputChange}
+            fullWidth
+            multiline
+            rows={3}
           />
           <TextField
             label="Price"
-            fullWidth
-            margin="normal"
             name="price"
             type="number"
             value={productData.price}
             onChange={handleInputChange}
+            fullWidth
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
+          <Button onClick={() => setOpenDialog(false)} color="secondary">
             Cancel
           </Button>
-          <Button onClick={editingProductId ? updateProduct : createProduct} color="primary">
+          <Button
+            onClick={editingProductId ? updateProduct : createProduct}
+            variant="contained"
+            color="primary"
+          >
             {editingProductId ? 'Update' : 'Create'}
           </Button>
         </DialogActions>

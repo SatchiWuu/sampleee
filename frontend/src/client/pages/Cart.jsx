@@ -58,7 +58,7 @@ const Cart = () => {
       const response = await axios.post(`http://localhost:8000/api/user/${userId}/checkout`, orderData);
       console.log('Checkout successful', response.data);
       // Redirect user to the order confirmation page or success page
-      navigate(`/order-success/${response.data.checkout._id}`);
+      navigate(`/`);
     } catch (error) {
       console.log(error)
     } finally {
