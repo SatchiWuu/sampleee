@@ -12,6 +12,7 @@ import Profile from './client/pages/Profile'
 
 import OneProduct from './admin/pages/OneProduct'
 import Login from './client/components/Login';
+import Checkout from './client/components/Checkout/Checkout';
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -30,6 +31,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
 
       </Routes>

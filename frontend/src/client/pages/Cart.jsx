@@ -35,35 +35,7 @@ const Cart = () => {
   };
 
   const handleCheckout = async () => {
-    setIsLoading(true);
-    const userId = '673f3c2896c3037c004c57ef';  // Replace with dynamic user ID, e.g., from authentication context
-    const shippingDetails = { address: '123 Main St', city: 'Sample City', postalCode: '12345' };
-
-    const checkoutItems = cart.map(item => ({
-      cartItemId: item._id,
-      productId: item.productId._id,
-      stockId: item.stockId,
-      color: item.color,
-      size: item.size,
-      quantity: item.quantity,
-    }));
-
-    const orderData = {
-      items: checkoutItems,
-      total_cost: totalPrice,
-      shippingDetails: shippingDetails,
-    };
-
-    try {
-      const response = await axios.post(`http://localhost:8000/api/user/${userId}/checkout`, orderData);
-      console.log('Checkout successful', response.data);
-      // Redirect user to the order confirmation page or success page
-      navigate(`/`);
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setIsLoading(false);
-    }
+    navigate("/checkout");
   };
 
   return (

@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import AdbIcon from "@mui/icons-material/Adb";
-import RollerSkatingIcon from '@mui/icons-material/RollerSkating';
+import RollerSkatingIcon from "@mui/icons-material/RollerSkating";
 import { getUser, logout } from "../../utils/helper";
 
 const pages = ["Products", "Pricing", "Blog"];
@@ -48,7 +48,9 @@ function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <RollerSkatingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <RollerSkatingIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             {" "}
             <Typography
@@ -66,7 +68,7 @@ function Header() {
                 textDecoration: "none",
               }}
             >
-            Foot Lounges
+              Foot Lounges
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -103,7 +105,9 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <RollerSkatingIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <RollerSkatingIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -132,11 +136,18 @@ function Header() {
           </Box>
           {!user ? (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              {/* <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
+              <Button
+              color="#000080"
+              // variant="outlined"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >Login</Button>
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

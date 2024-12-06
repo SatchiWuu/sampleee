@@ -4,6 +4,7 @@ import cors from 'cors'
 import productRoute from './routes/ProductRoute.js'
 import userRoute from './routes/userRoute.js'
 import loginRoute from './routes/Auth/LoginRoute.js'
+import OrderRoute from './routes/OrderRoute.js'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import { corsOptions } from './config/corsOptions.js'
@@ -59,7 +60,7 @@ app.post("/upload", upload.single("my_file"), async (req, res) => {
 
 app.use('/api/product', productRoute);
 app.use('/api/user', userRoute);
-
+app.use('/order', OrderRoute)
 app.use('/auth', loginRoute)
 
 app.listen(port, () => {
